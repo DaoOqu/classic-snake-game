@@ -22,30 +22,30 @@ let currentFoodPosition = 0;
 
 // create the randomly generated food items in the game board
 const createFood = () => {
-  gameBoardPixels[currentFoodPosition].classlist.remove('food');
+  gameBoardPixels[currentFoodPosition].classList.remove("food");
   currentFoodPosition = Math.floor(Math.random() * TOTAL_PIXEL_COUNT);
-  gameBoardPixels[currentFoodPosition].classlist.add('food');
+  gameBoardPixels[currentFoodPosition].classList.add('food');
 }
 
 // start setting up snake behavior
-const leftDir = 37;
-const upDir = 38;
-const rightDir = 39;
-const downDir = 40;
+const LEFT_DIR = 37;
+const UP_DIR = 38;
+const RIGHT_DIR = 39;
+const DOWN_DIR = 40;
 
-let snakeCurrentDirection = rightDir;
+let snakeCurrentDirection = RIGHT_DIR;
 
 // make sure that user input is valid and change snake direction variable
 const changeDirection = newDirectionCode => {
   if(newDirectionCode === snakeCurrentDirection) return;
 
-  if(newDirectionCode === leftDir && snakeCurrentDirection !== rightDir) {
+  if(newDirectionCode === LEFT_DIR && snakeCurrentDirection !== RIGHT_DIR) {
     snakeCurrentDirection = newDirectionCode;
-  }else if(newDirectionCode === upDir && snakeCurrentDirection !== downDir) {
+  }else if(newDirectionCode === UP_DIR && snakeCurrentDirection !== DOWN_DIR) {
     snakeCurrentDirection = newDirectionCode;
-  } else if(newDirectionCode === rightDir && snakeCurrentDirection !== leftDir) {
+  } else if(newDirectionCode === RIGHT_DIR && snakeCurrentDirection !== LEFT_DIR) {
     snakeCurrentDirection = newDirectionCode;
-  } else if(newDirectionCode === downDir && snakeCurrentDirection !== upDir) {
+  } else if(newDirectionCode === DOWN_DIR && snakeCurrentDirection !== UP_DIR) {
     snakeCurrentDirection = newDirectionCode;
   }
 }
@@ -59,7 +59,7 @@ let snakeLength = 200;
 // start moving snake, wrap around to other side of screen if needed
 const moveSnake = () => {
   switch (snakeCurrentDirection) {
-    case leftDir:
+    case LEFT_DIR:
       --currentHeadPosition;
       const isHeadAtLeft = currentHeadPosition % LINE_PIXEL_COUNT === LINE_PIXEL_COUNT - 1 || currentHeadPosition < 0;
       if(isHeadAtLeft) {
@@ -73,21 +73,21 @@ const moveSnake = () => {
         currentHeadPosition = currentHeadPosition - LINE_PIXEL_COUNT;
       }
       break;
-    case upDir:
+    case UP_DIR:
       currentHeadPosition = currentHeadPosition - LINE_PIXEL_COUNT;
       const isHeadAtTop = currentHeadPosition < 0;
       if(isHeadAtTop) {
         currentHeadPosition = currentHeadPosition + TOTAL_PIXEL_COUNT;
       }
       break;
-    case downDir:
+    case DOWN_DIR:
       currentHeadPosition = currentHeadPosition + LINE_PIXEL_COUNT;
       const isHeadAtBottom = currentHeadPosition > TOTAL_PIXEL_COUNT - 1;
       if(isHeadAtBottom) {
         currentHeadPosition = currentHeadPosition - TOTAL_PIXEL_COUNT;
       }
       break;
-    default:
+      default:
       break;
   }
 
@@ -95,18 +95,18 @@ const moveSnake = () => {
   let nextSnakeHeadPixel = gameBoardPixels[currentHeadPosition];
 
   // if snake interesects with its own body
-  if(nextSnakeHeadPixel.classlist.contains('snakeBodyPixel')) {
+  if(nextSnakeHeadPixel.classList.contains('snakeBodyPixel')) {
     clearInterval(moveSnakeInterval);
     alert(`You have eaten ${totalFoodEaten} food(s) and traveled ${totalDistanceTraveled} blocks`);
     window.location.reload();
   }
 
   // add snake body styling assuming an empty pixel
-  nextSnakeHeadPixel.classlist.add('snakeBodyPixel');
+  nextSnakeHeadPixel.classList.add('snakeBodyPixel');
 
   // remove snake styling to keep snake appropriate length
   setTimeout(() => {
-    nextSnakeHeadPixel.classlist.remove('snakeBodyPixel');
+    nextSnakeHeadPixel.classList.remove('snakeBodyPixel');
   }, snakeLength);
 
   // describes what to do when when snake eats food pixel
@@ -137,10 +137,10 @@ const upButton = document.querySelector('#up-button');
 const downButton = document.querySelector('#down-button');
 
 // listeners for buttons 
-leftButton.onclick = () => changeDirection(leftDir);
-rightButton.onclick = () => changeDirection(rightDir);
-upButton.onclick = () => changeDirection(upDir);
-downButton.onclick = () => changeDirection(downDir);
+leftButton.onclick = () => changeDirection(LEFT_DIR);
+rightButton.onclick = () => changeDirection(RIGHT_DIR);
+upButton.onclick = () => changeDirection(UP_DIR);
+downButton.onclick = () => changeDirection(DOWN_DIR);
 
 
 
