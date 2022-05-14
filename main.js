@@ -22,7 +22,7 @@ let currentFoodPosition = 0;
 
 // create the randomly generated food items in the game board
 const createFood = () => {
-  gameBoardPixels[currentFoodPosition].classList.remove("food");
+  gameBoardPixels[currentFoodPosition].classList.remove('food');
   currentFoodPosition = Math.floor(Math.random() * TOTAL_PIXEL_COUNT);
   gameBoardPixels[currentFoodPosition].classList.add('food');
 }
@@ -66,7 +66,7 @@ const moveSnake = () => {
         currentHeadPosition = currentHeadPosition + LINE_PIXEL_COUNT;
       }
       break;
-    case righttDir:
+    case RIGHT_DIR:
       ++currentHeadPosition;
       const isHeadAtRight = currentHeadPosition % LINE_PIXEL_COUNT === 0;
       if(isHeadAtRight) {
@@ -114,6 +114,8 @@ const moveSnake = () => {
     console.log('eat food');
     totalFoodEaten++;
     document.querySelector('#points-earned').innerText = totalFoodEaten;
+    snakeLength += 100;
+    createFood();
   }
 
   // track distance traveled 
@@ -128,7 +130,7 @@ createFood();
 
 // animation speed
 let moveSnakeInterval = setInterval(moveSnake, 100);
-addEventListener(keydown, e => changeDirection(e.keyCode));
+addEventListener("keydown", e => changeDirection(e.keyCode));
 
 // variables for buttons
 const leftButton = document.querySelector('#left-button');
