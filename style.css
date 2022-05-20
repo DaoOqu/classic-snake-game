@@ -1,36 +1,14 @@
-/* Box Model Hack */
-* {
-     box-sizing: border-box;
-}
 
-/* Clear fix hack */
-.clearfix:after {
-     content: ".";
-     display: block;
-     clear: both;
-     visibility: hidden;
-     line-height: 0;
-     height: 0;
-}
-
-.clear {
-	clear: both;
-}
 
 /******************************************
 /* BASE STYLES
 /*******************************************/
-
 body {
-     background-color: rgb(52, 114, 63);
+     background-color: rgb(63, 182, 102);
      text-align: center;
 }
-
-/******************************************
-/* LAYOUT
-/*******************************************/
-
-#game-container {
+   
+   #gameContainer {
      width: 40vw;
      height: 40vw;
      margin: 1vw auto;
@@ -39,32 +17,32 @@ body {
      border-radius: 10px;
      box-shadow: 0px 0px 20px 3px black;
 }
-
+   
 .gameBoardPixel {
      width: 1vw;
      height: 1vw;
      border-radius: 10px;
      float: left;
 }
-
+   
 .food {
      background-color: #f80505;
      box-shadow: 0 0 10px #fa8080;
 }
-
+   
 .snakeBodyPixel {
      background-color: #049a2c;
      box-shadow: 0 0 5px #07d50b;
 }
-
-#score-container {
-     width: 40vw;
+   
+#scoreContainer {
+     width:  40vw;
      display: flex;
      margin: auto;
      justify-content: space-around;
 }
-
-.score-board {
+   
+.scoreBoard {
      font-family: 'Courier New', Courier, monospace;
      font-weight: bold;
      border-radius: 10px;
@@ -76,57 +54,52 @@ body {
      width: 40%;
      box-shadow: 0px 0px 20px 3px black;
 }
-
-#onScreen-controllers {
+   
+#onScreenControllers {
      display: none;
 }
-
+   
 @media only screen and (max-width: 786px) {
-     #game-container {
-          width: 80vw;
-          height: 80vw;
+     #gameContainer {
+       width: 80vw;
+       height: 80vw;
      }
-
+   
      .gameBoardPixel {
-          width: 2vw;
-          height: 2vw;
+       width: 2vw;
+       height: 2vw;
      }
-
-     #score-container {
-          width: 80vw;
+   
+     #scoreContainer {
+       width: 80vw;
      }
-
-     #onScreen-controllers {
-          width: 80vw;
-          margin: 5vw auto;
-          display: flex;
-          justify-content: space-evenly;
-          align-items: center;
+   
+     #onScreenControllers {
+     width: 80vw;
+     margin: 5vw auto;
+     display: flex;
+     justify-content: space-evenly;
+     align-items: center;
      }
-
-     #onScreen-controllers > div {
-          display: flex;
-          flex-direction: column;
+   
+     #onScreenControllers > div {
+       display: flex;
+       flex-direction: column;
      }
-
-     #onScreen-controllers button {
-          background-color: transparent;
-          height: 20vw;
-          width: 20vw;
-          font-size: 10vw;
-          border: none;
+   
+     #onScreenControllers button {
+       background-color: transparent;
+       height: 20vw;
+       width: 20vw;
+       font-size: 10vw;
+       border: none;
      }
-
-     #onScreen-controllers button:focus {
-          outline: none;
+   
+     #onScreenControllers button:focus {
+       outline: none;
      }
-
-     #onScreen-controllers button:active {
-          background-color: slategray;
+   
+     #onScreenControllers button:active {
+       background-color: slategray;
      }
 }
-
-
-/******************************************
-/* ADDITIONAL STYLES
-/*******************************************/
